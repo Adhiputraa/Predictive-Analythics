@@ -18,9 +18,10 @@ Stroke merupakan salah satu penyakit yang menyebabkan kematian terbanyak di Indo
 ## **Business Understanding**
 ### **Problem Statements**
 Berdasarkan latar belakang yang menjadi tercipta nya penelitian ini, adapun rincian masalah yang dapat diselesaikan pada proyek ini adalah sebagai berikut :
+
 *   Apa variabel yang paling berpengaruh dalam terhdapa seseorang yang mengalami penyakit stroke?
 *   Apa model machine learning yang paling baik untuk memprediksi penyakit stroke?
-*   Bagaimana kinerja sistem sederhana untuk memprediksi penyakit Stroke dengan menerapkan Random Forest berdasarkan data yang tersedia?
+*   Bagaimana kinerja sistem sederhana untuk memprediksi penyakit Stroke dengan  beberapa algoritma berdasarkan data yang tersedia?
 
 ### **Goals**
 Adapun tujuan dilakukan nya penelitian ini yaitu:
@@ -90,29 +91,101 @@ Pada tahap ini penulis melakukan over sampling. Dilakukan nya oversampling dikar
 ## **Modeling**
 
 Pada tahap ini, penulis membangun model prediksi dengan menggunakan 4 algoritma berbeda, yaitu Random Forest, Naive Bayes, K-Nearest Neighbor, Logistic Regression. Penelitian ini berupa klasifikasi maka penulis menggunakan metriks accuracy untuk melihat performa dari model dari ke-4 algoritma yang digunakan.
+Dari keempat algoritma tersebut kemudian penulis akan menjelaskan masing-masing performa model yang telah dilatih dan menjalankan pengujian sebagai berikut:
 
-Berikut merupakan hasil dari modeling berupa metrik akurasi dari 4 algoritma.
-matriks berupa matriks acc dari data training dan matriks dari data testing:
+Pada tahapan pertama yaitu pelatihan model, berikut merupakan akurasi masing-masing model sebagai berikut:
 
-**AccuracyTraining** 
+![acc](https://user-images.githubusercontent.com/55022521/189930297-b41c8bd9-4e61-4ec5-94ac-ea76e25c99b2.jpg)
 
-![image](https://user-images.githubusercontent.com/55022521/189843711-736ab3c1-a881-47bd-a51f-82080dee26f8.png)
 
-**Accuracy Testing**
+1.   Model yang menggunakan algoritma *Random Forest Classifier* berhasil mendapatkan akurasi skor model sebesar : 0.9998 atau sekitar 99%
+2.   Model yang menggunakan algoritma *Gaussian Naive Bayes* mendapatkan akurasi skor model sebesar: 0.7959 atau sekitar 80%
+3.   Model yang menggunakan algoritma *K-Neighbors Classifier* mendapatkan akurasi skor model sebesar: 0.9146 atau sekitar 91%
+4.   Model yang menggunakan algoritma *Logistic Regression* mendapatkan akurasi skor model sebesar: 0.8193 atau sekitar 82%
 
-![image](https://user-images.githubusercontent.com/55022521/189843882-b1051474-5de2-4a3c-b0e6-9f74c3bfd87c.png)
+Pada tahapan kedua yaitu pengujian model, berikut merupakan akurasi masing-masing model sebagai berikut:
+
+![train_acc](https://user-images.githubusercontent.com/55022521/189930693-5959e4f0-8162-4815-a394-63a1f61887af.jpg)
+
+1.   Model yang menggunakan algoritma *Random Forest Classifier* berhasil mendapatkan akurasi skor model sebesar : 0.5059 atau sekitar 50%
+2.   Model yang menggunakan algoritma *Gaussian Naive Bayes* mendapatkan akurasi skor model sebesar: 0.5074 atau sekitar 50%
+3.   Model yang menggunakan algoritma *K-Neighbors Classifier* mendapatkan akurasi skor model sebesar: 0.5233 atau sekitar 52%
+4.   Model yang menggunakan algoritma *Logistic Regression* mendapatkan akurasi skor model sebesar: 0.4987 atau sekitar 49%
+
+Akurasi terbesar pada pelatihan model yaitu algoritma Random Forest Classifier, lalu diikuti dengan algoritma K-NeighborsClassifier. Untuk akurasi pada saat pengujian model hasil tertinggi didapat oleh algoritma K-NeighborsClassifier , lalu diikuti dengan algoritma Naive Bayes. Berdasarkan hasil pelatihan dan pengujian model tersebut penulis menyimpulkan bahwa performa terbaik dan stabil ketika model menggunakan algoritma K-NeighborsClassifier
 
 ## **Evaluation**
 
-Berdasarkan hasil matriks accuracy score pada model prediksi dari ke-4 model diatas didapati bahwa model algoritma yang paling baik yaitu *KNeighborsClassifier*. Lalu kami melakukan testing secara manual terhadap model. Penulis mengambil data secara acar lalu melakukan test dan masih bisa ter-predict dengan benar.
+Karena model yang digunakakan merupakan model klasifikasi sehingga model yang telah dibangun akan di evaluasi dengan metode confusion matrix. Confusion matrix  adalah ringkasan tabular dari jumlah prediksi yang benar dan salah yang dibuat oleh model klasifikasi. Confusion matrix digunakan untuk mengukur kinerja model klasifikasi. 
 
-**Confusion Matrix of KNeighborsClassifier**
+![cfx](https://user-images.githubusercontent.com/55022521/189931611-5867b84b-98b2-4ab9-b053-661a0c053425.png)
 
-![cmatrix](https://user-images.githubusercontent.com/55022521/189844280-b798258d-9bad-4de4-9989-37e363dcd3e2.png)
 
-**Evauation Score**
+Berikut merupakan penjelasan dari masing-masing nilai yang terdapat pada confusion matrix:
 
-![image](https://user-images.githubusercontent.com/55022521/189871832-e79c2227-fc1b-40cb-bfb0-51358f155bdc.png)
+*   **Nilai Prediksi**: keluaran dari program dimana nilainya Positif dan Negatif.
+*   **Nilai Aktual**: nilai sebenarnya dimana nilainya True dan False.
+*   **True Positive** (TP): Nilai aktual Positif dan diprediksi juga Positif.
+*   **True Negative** (TN): Nilai actual Negatif dan prediksi juga Negatif.
+*  **False Positive** (FP): Nilai actual negatif tetapi prediksi positif. Istilah lain nya dikenal sebagai 'Type 1 error' atau kesalahan Tipe 1
+*   **False Negative** (FN) :Nilai actual Positif tetapi prediksinya Negatif. Istilah lain nya sebagai 'Type 2 error' atau kesalahan Tipe 2
+
+Confusion matrix juga dapat digunakan untuk mengevaluasi kinerja model klasifikasi dengan menghitung kinerja metrik seperti 'accuracy', 'precision', 'recall atau sensitivity', dan 'F-1 Score'.
+
+**Accuracy**: 
+
+Menggambarkan seberapa akurat model dalam mengklasifikasikan dengan benar
+
+
+```
+Accuracy = (TP+TN) / (TP+FP+FN+TN)
+```
+
+**Precision**: 
+
+Menggambarkan akurasi antara data yang diminta dengan hasil prediksi yang diberikan oleh model. 
+```
+Precision = (TP) / (TP + FP)
+```
+**Recall atau sensitivity**: 
+
+Menggambarkan keberhasilan model dalam menemukan kembali sebuah informasi
+
+```
+Recall  = TP / (TP + FN)
+```
+
+**F-1 Score**: menggambarkan perbandingan rata-rata precision dan recall yang dibobotkan. Accuracy tepat kita gunakan sebagai acuan performansi algoritma jika dataset kita memiliki jumlah data False Negatif dan False Positif yang sangat mendekati (symmetric). Namun jika jumlahnya tidak mendekati, maka sebaiknya kita menggunakan F1 Score sebagai acuan.
+
+```
+F-1 Score  = (2 * Recall * Precision) / (Recall + Precision)
+```
+Berikut merupakan confusion matrix dan hasilnya yang didapat dari model prediksi menggunakan algoritma dengan tingkat model yang optimal, yaitu K-Neighbors Classifier:
+
+![download](https://user-images.githubusercontent.com/55022521/189936889-c5038fc7-d3e8-4236-aa44-17ec0bf3389f.png)
+
+
+![f1 score](https://user-images.githubusercontent.com/55022521/189932233-e0f90a08-beaf-4479-9141-4de7414478ed.jpg)
+
+
+Mari kita hitung secara manual :
+
+- Accuracy = (TP+TN) / (TP+FP+FN+TN)
+
+Accuracy = (261 + 757) / (261 + 218 + 709 + 757) = 0.523
+ 
+- Precision = (TP) / (TP + FP)
+
+Precision = 261 / (261 + 218) = 0.544
+
+- Recall  = TP / (TP + FN)
+
+Recall = 261 /(261 + 709 ) = 0.269
+
+- F-1 Score  = (2 * Recall * Precision) / (Recall + Precision)
+
+F-1 Score  = ( 2 * 0.269 * 0.544 ) / ( 0.269 * 0.544) = 0.360
+
 
 ## **Kesimpulan**
 
